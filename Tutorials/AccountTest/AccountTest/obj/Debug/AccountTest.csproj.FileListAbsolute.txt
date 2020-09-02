@@ -1,0 +1,7 @@
+D:\Documents\CIT\CSharp\Tutorials\AccountTest\AccountTest\bin\Debug\AccountTest.exe.config
+D:\Documents\CIT\CSharp\Tutorials\AccountTest\AccountTest\bin\Debug\AccountTest.exe
+D:\Documents\CIT\CSharp\Tutorials\AccountTest\AccountTest\bin\Debug\AccountTest.pdb
+D:\Documents\CIT\CSharp\Tutorials\AccountTest\AccountTest\obj\Debug\AccountTest.csprojAssemblyReference.cache
+D:\Documents\CIT\CSharp\Tutorials\AccountTest\AccountTest\obj\Debug\AccountTest.csproj.CoreCompileInputs.cache
+D:\Documents\CIT\CSharp\Tutorials\AccountTest\AccountTest\obj\Debug\AccountTest.exe
+D:\Documents\CIT\CSharp\Tutorials\AccountTest\AccountTest\obj\Debug\AccountTest.pdb
