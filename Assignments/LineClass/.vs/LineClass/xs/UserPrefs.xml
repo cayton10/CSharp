@@ -1,0 +1,33 @@
+﻿<Properties GitUserInfo="UsingGIT" StartupConfiguration="{D8260A46-AF4D-4AB1-AF92-BF6091EE3E5C}|Default">
+  <MonoDevelop.Ide.Workbench>
+    <Files>
+      <File FileName="LineClass/Program.cs" Line="55" Column="1" />
+      <File FileName="LineClass/Line.cs" Line="86" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="LineClass" expanded="True">
+            <Node name="Assignment1" expanded="True">
+              <Node name="Line.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State>
+          <Value>y</Value>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.Assignment1 PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/BPC/Documents/CIT/CIT265/CSharp/Assignments/LineClass/LineClass/Program.cs" relfile="LineClass/Program.cs" line="50" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

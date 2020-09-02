@@ -30,7 +30,9 @@ namespace Assignment1
             set { c = value; }
         }
 
-        //Methods
+        /************CLASS METHODS*******************/
+        /********************************************/
+
         //Returns value of X for given Y value
         public double ReturnX(double value)
         {
@@ -42,6 +44,7 @@ namespace Assignment1
             return x;
         }
 
+        //Returns value of Y for given X value
         public double ReturnY(double value)
         {
             double y;//Declare variable to return
@@ -49,7 +52,6 @@ namespace Assignment1
             y = (c / b) - ((a * value) / b);
             return y;
         }
-
 
         //Returns slope of line
         public double ReturnSlope()
@@ -70,6 +72,19 @@ namespace Assignment1
                 m = double.PositiveInfinity;
 
             return m;
+        }
+
+        //Determine whether two lines are parallel
+        public bool Parallel(double val1, double val2)
+        {
+            bool parallel;//Declare variable to return
+
+            if (val1 == val2)
+                parallel = true;
+            else
+                parallel = false;
+
+            return parallel;
         }
     }
 }
