@@ -23,19 +23,22 @@ namespace VendingMachine
             this.quantity = quantity;
         }
 
-        //Getters for all item properties
+        //Property setter / getters
         public string Name
         {
+            set { name = value; }
             get { return name; }
         }
 
         public int Quantity
         {
+            set { quantity = value; }
             get { return quantity; }
         }
 
         public double Price
         {
+            set { price = value; }
             get { return price; }
         }
 

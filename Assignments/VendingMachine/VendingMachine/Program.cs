@@ -22,8 +22,8 @@ namespace VendingMachine
                 };
             //Instantiate the vendor class to accept items into array of Item type
             Vendor machine;
+            //Pass temp array to Vendor object to load machine
             machine = new Vendor(tempArray);
-
             machine.SelectItem();
 
         }
