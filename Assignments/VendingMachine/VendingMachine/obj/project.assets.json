@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/BPC/Documents/CIT/CIT265/CSharp/Assignments/LineClass/LineClass/Assignment1.csproj",
-      "projectName": "Assignment1",
-      "projectPath": "/Users/BPC/Documents/CIT/CIT265/CSharp/Assignments/LineClass/LineClass/Assignment1.csproj",
+      "projectUniqueName": "/Users/BPC/Documents/CIT/CIT265/CSharp/Assignments/VendingMachine/VendingMachine/VendingMachine.csproj",
+      "projectName": "VendingMachine",
+      "projectPath": "/Users/BPC/Documents/CIT/CIT265/CSharp/Assignments/VendingMachine/VendingMachine/VendingMachine.csproj",
       "packagesPath": "/Users/BPC/.nuget/packages/",
-      "outputPath": "/Users/BPC/Documents/CIT/CIT265/CSharp/Assignments/LineClass/LineClass/obj/",
+      "outputPath": "/Users/BPC/Documents/CIT/CIT265/CSharp/Assignments/VendingMachine/VendingMachine/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/BPC/.config/NuGet/NuGet.Config"

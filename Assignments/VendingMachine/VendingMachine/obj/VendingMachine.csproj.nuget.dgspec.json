@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/BPC/Documents/CIT/CIT265/CSharp/Assignments/LineClass/LineClass/LineClass.csproj": {}
+    "/Users/BPC/Documents/CIT/CIT265/CSharp/Assignments/VendingMachine/VendingMachine/VendingMachine.csproj": {}
   },
   "projects": {
-    "/Users/BPC/Documents/CIT/CIT265/CSharp/Assignments/LineClass/LineClass/LineClass.csproj": {
+    "/Users/BPC/Documents/CIT/CIT265/CSharp/Assignments/VendingMachine/VendingMachine/VendingMachine.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/BPC/Documents/CIT/CIT265/CSharp/Assignments/LineClass/LineClass/LineClass.csproj",
-        "projectName": "LineClass",
-        "projectPath": "/Users/BPC/Documents/CIT/CIT265/CSharp/Assignments/LineClass/LineClass/LineClass.csproj",
+        "projectUniqueName": "/Users/BPC/Documents/CIT/CIT265/CSharp/Assignments/VendingMachine/VendingMachine/VendingMachine.csproj",
+        "projectName": "VendingMachine",
+        "projectPath": "/Users/BPC/Documents/CIT/CIT265/CSharp/Assignments/VendingMachine/VendingMachine/VendingMachine.csproj",
         "packagesPath": "/Users/BPC/.nuget/packages/",
-        "outputPath": "/Users/BPC/Documents/CIT/CIT265/CSharp/Assignments/LineClass/LineClass/obj/",
+        "outputPath": "/Users/BPC/Documents/CIT/CIT265/CSharp/Assignments/VendingMachine/VendingMachine/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/BPC/.config/NuGet/NuGet.Config"
@@ -50,7 +50,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.401/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.402/RuntimeIdentifierGraph.json"
         }
       }
     }

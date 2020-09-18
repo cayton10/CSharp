@@ -1,0 +1,27 @@
+﻿<Properties StartupConfiguration="{D4C0EBBA-64D8-4590-85EA-FF217233D7CD}|Default">
+  <MonoDevelop.Ide.ItemProperties.VendingMachine FirstBuild="True" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Item.cs">
+    <Files>
+      <File FileName="Program.cs" Line="5" Column="30" />
+      <File FileName="Item.cs" Line="12" Column="26" />
+      <File FileName="Vendor.cs" Line="6" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="VendingMachine" expanded="True">
+            <Node name="VendingMachine" expanded="True">
+              <Node name="Item.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
