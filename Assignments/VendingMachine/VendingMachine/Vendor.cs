@@ -9,30 +9,77 @@ namespace VendingMachine
     public class Vendor
     {
         //Declare private member of Item array type
-        private Item[] ItemArray;
+        private Item[] itemArray;
+        private int selection;
+        private int quantity;
 
 
         //Vendor constructor
         public Vendor(Item[] array)
         {
-            //Create array with project specified size
-            ItemArray = new Item[5];
             //Load array passed from ctor to private Item array
-            ItemArray = array;
+            itemArray = new Item[5];
+            //Load array passed from ctor to private Item array
+            itemArray = array;
+
+        }
+
+        //Public member function for user selection
+        public void SelectItem()
+        {
+            do
+            {
+                string userChoice;
+                //Define user choice variable
+                PrintMenu();
+                userChoice = Console.ReadLine();
+                //Validate user input
+                selection = ValidateNum(userChoice);
+
+                //If user selection value out of range
+                if ((selection < 1 || selection > 5) && selection != 0)
+                {
+                    Console.WriteLine("Please select from the options available (1-5).");
+                }
+            }
+            while ((selection < 1 || selection > 5) && selection != 0);
+            //If user selects exit key,
+            if (selection == 0)
+            {
+                Environment.Exit(0);//Exit gracefully.
+            }
+            else
+                SelectItem();
         }
 
 
         //Print menu
-        public void printMenu()
+        public void PrintMenu()
         {
             //Process array and print options to user until selection is
             //made
-            String s = String.Format("{0, -17} {1, -7} {2, -4} \n\n", "Item:", "Price:", "Qty:");
-            foreach(Item item in ItemArray)
+            String s = String.Format("{0, -2} {1, -16} {2, -4} {3, 6} \n\n","#", "Item:", "Price:", "Qty:");
+            int i = 1;
+            foreach (Item item in itemArray)
             {
-                s += String.Format("{0, -17} {1, 6} {2, 5}\n", item.Name, item.Price, item.Quantity);
+                s += String.Format("{0, -2} {1, -16} {2, 6} {3, 6}\n", $"{i}.", item.Name, item.Price, item.Quantity);
+                ++i;
             }
-            Console.WriteLine($"Please select from the following options. \n\n{s}");
+            Console.WriteLine($"Please select from the following options. Press '0' to exit. \n\n{s}");
+        }
+
+        //Number input validation method
+        public int ValidateNum(string input)
+        {
+            int value;//Value to return
+            while (!int.TryParse(input, out value))
+            {
+                Console.WriteLine("Not a number, try again.");
+                SelectItem();
+                input = Console.ReadLine();
+            }
+
+            return value;
         }
 
 
