@@ -10,7 +10,19 @@ namespace Inheritance
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Ship ship1 = new Ship(20, "Enterprise", 50, 50);
+            string v = ship1.ToString();
+            Console.WriteLine(v);
+            try
+            {
+                ship1.Move();
+            }
+            catch(NotImplementedException notImp)
+            {
+                Console.WriteLine(notImp.Message);
+            }
+            v = ship1.ToString();
+            Console.WriteLine(v);
         }
     }
 }

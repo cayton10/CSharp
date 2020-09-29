@@ -9,8 +9,27 @@ namespace Inheritance
     //Why am I here? Lol
     public class Cat
     {
-        public Cat()
+        private int hunger;
+        private int maxHunger;
+
+        //Property setter/getter
+        public int Hunger
         {
+            get { return hunger; }
+            set { hunger = value; }
+        }
+
+        public int MaxHunger
+        {
+            get { return maxHunger; }
+            set { maxHunger = value; }
+        }
+
+        //Cat ctor
+        public Cat(int hunger, int maxHunger)
+        {
+            this.hunger = hunger;
+            this.maxHunger = maxHunger;
         }
     }
 }

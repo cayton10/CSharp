@@ -29,16 +29,22 @@ namespace Inheritance
         }
 
         //Vessel ctor
-        public Vessel(float num, string str)
+        public Vessel(float speed, string name)
         {
-            this.speed = num;
-            this.name = str;
+            this.speed = speed;
+            this.name = name;
         }
+
+        //Abstract Move method
+        public abstract void Move();//Implementation of this abstract class
+                                    //to be done in derived class definitions
+                                    //Each derived class will use this method
+                                    //differently
 
         //Override to print vessel member variables
         public override string ToString()
         {
-            return $"Vessel speed: {speed},\nVessel name:{name}";
+            return $"Vessel speed: {speed},\nVessel name: {name}\n";
         }
     }
 }
