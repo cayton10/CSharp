@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Inheritance
 {
     //Public class, Ship inherits Vessel
-    public class Ship : Vessel
+    public class Ship : Vessel, IRefillable
     {
         //Private Ship member variables
         private int fuel;
@@ -25,6 +25,24 @@ namespace Inheritance
         {
             get { return maxFuel; }
             set { maxFuel = value; }
+        }
+
+        //Implement Interface property FuelPercentage{get;}
+        public float FuelPercentage
+        {
+            get => (float)fuel / maxFuel * 100;
+        }
+
+        //Implement Interface Method to Refill()
+        public void Refill(int amt)
+        {
+            fuel += amt;
+            //Don't overfeed cat
+            if (fuel > maxFuel)
+            {
+                fuel = maxFuel;
+            }
+
         }
 
         //Ship ctor
@@ -55,7 +73,7 @@ namespace Inheritance
         //Override to print Ship member variables
         public override string ToString()
         {
-            return base.ToString() + $"Current Fuel: {fuel}\nMax Fuel: {maxFuel}";
+            return base.ToString() + $"Current Fuel: {fuel}\nMax Fuel: {maxFuel}\n";
         }
     }
 }
