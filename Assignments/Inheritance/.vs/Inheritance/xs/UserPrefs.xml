@@ -1,19 +1,32 @@
 ﻿<Properties StartupConfiguration="{FCC7438C-C55F-4CC6-AEAA-58AE5B39E08B}|Default">
+<<<<<<< HEAD
   <MonoDevelop.Ide.Workbench ActiveDocument="Ship.cs">
     <Files>
       <File FileName="Program.cs" Line="25" Column="34" />
       <File FileName="Vessel.cs" />
       <File FileName="Ship.cs" Line="58" Column="40" />
+=======
+  <MonoDevelop.Ide.Workbench ActiveDocument="Cat.cs">
+    <Files>
+      <File FileName="Program.cs" Line="47" Column="1" />
+      <File FileName="Vessel.cs" />
+      <File FileName="Ship.cs" />
+>>>>>>> inheritance
       <File FileName="Boat.cs" />
-      <File FileName="Cat.cs" />
+      <File FileName="Cat.cs" Line="37" Column="8" />
       <File FileName="README.md" />
+      <File FileName="IRefillable.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Inheritance" expanded="True">
             <Node name="Inheritance" expanded="True">
+<<<<<<< HEAD
               <Node name="Ship.cs" selected="True" />
+=======
+              <Node name="Cat.cs" selected="True" />
+>>>>>>> inheritance
             </Node>
           </Node>
         </State>
@@ -24,7 +37,10 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.ItemProperties.Inheritance PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/BPC/Documents/CIT/CIT265/CSharp/Assignments/Inheritance/Program.cs" relfile="Program.cs" line="47" column="1" />
+      <Breakpoint file="/Users/BPC/Documents/CIT/CIT265/CSharp/Assignments/Inheritance/Program.cs" relfile="Program.cs" line="46" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
 </Properties>

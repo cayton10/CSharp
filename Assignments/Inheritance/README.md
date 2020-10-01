@@ -27,3 +27,8 @@ A Boat moves by its speed multiplied by how many oars it has.
 Created directory structure, updated this README.md file, and created all required classes described
 within the project guidelines.
 
+## 10.1.2020
+
+Having a lot of trouble figuring out how to implement the FuelPercentage property and get the correct value
+When I implement the getter, it auto initializes the value to zero, since maxHunger is zero upon
+object instantiation. After the values are set, FuelPercentage is never calculated. It's just set to 0.

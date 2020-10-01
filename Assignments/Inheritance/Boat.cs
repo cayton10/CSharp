@@ -24,6 +24,7 @@ namespace Inheritance
 
         public override void Move()
         {
+            //Set speed based on oar count
             if(oars < 0)
             {
                 base.Speed = 0;
