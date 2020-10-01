@@ -55,7 +55,7 @@ namespace Inheritance
         //Override to print Ship member variables
         public override string ToString()
         {
-            return base.ToString() + $"Current Fuel: {fuel}\nMax Fuel: {maxFuel}";
+            return base.ToString() + $"Current Fuel: {fuel}\nMax Fuel: {maxFuel}\n";
         }
     }
 }

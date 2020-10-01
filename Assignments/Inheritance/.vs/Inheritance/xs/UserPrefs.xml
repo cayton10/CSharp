@@ -1,9 +1,9 @@
 ﻿<Properties StartupConfiguration="{FCC7438C-C55F-4CC6-AEAA-58AE5B39E08B}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Vessel.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Ship.cs">
     <Files>
-      <File FileName="Program.cs" Line="1" Column="1" />
-      <File FileName="Vessel.cs" Line="28" Column="10" />
-      <File FileName="Ship.cs" />
+      <File FileName="Program.cs" Line="25" Column="34" />
+      <File FileName="Vessel.cs" />
+      <File FileName="Ship.cs" Line="58" Column="40" />
       <File FileName="Boat.cs" />
       <File FileName="Cat.cs" />
       <File FileName="README.md" />
@@ -13,7 +13,7 @@
         <State name="__root__">
           <Node name="Inheritance" expanded="True">
             <Node name="Inheritance" expanded="True">
-              <Node name="Vessel.cs" selected="True" />
+              <Node name="Ship.cs" selected="True" />
             </Node>
           </Node>
         </State>
@@ -22,7 +22,7 @@
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Inheritance FirstBuild="True" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.ItemProperties.Inheritance PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

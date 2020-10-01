@@ -24,8 +24,6 @@ namespace Inheritance
 
         public override void Move()
         {
-            //Set speed based on oar count
-            base.Speed *= oars;
             if(oars < 0)
             {
                 base.Speed = 0;
@@ -41,7 +39,7 @@ namespace Inheritance
         //Override to print Boat member variables
         public override string ToString()
         {
-            return base.ToString() + $" Number of Oars: {oars}";
+            return base.ToString() + $"Number of Oars: {oars}\n";
         }
     }
 }
