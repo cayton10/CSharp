@@ -32,3 +32,9 @@ within the project guidelines.
 Having a lot of trouble figuring out how to implement the FuelPercentage property and get the correct value
 When I implement the getter, it auto initializes the value to zero, since maxHunger is zero upon
 object instantiation. After the values are set, FuelPercentage is never calculated. It's just set to 0.
+
+Figured out what the problem was. I needed to cast the datatypes for hunger and maxHunger from int to float since
+the return type for the Interface method is float. I've been writing in so many languages this semester that I completely
+forgot about having to manually cast the datatypes for return.
+
+Everything works as perscribed. Satisfies all assignment requirements.
