@@ -2,7 +2,7 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="LineClass/Program.cs">
     <Files>
       <File FileName="LineClass/Program.cs" Line="120" Column="35" />
-      <File FileName="LineClass/Line.cs" Line="36" Column="9" />
+      <File FileName="LineClass/Line.cs" />
       <File FileName="README.md" />
     </Files>
     <Pads>
