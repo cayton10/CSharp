@@ -1,0 +1,31 @@
+﻿<Properties StartupConfiguration="{FCC7438C-C55F-4CC6-AEAA-58AE5B39E08B}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Boat.cs">
+    <Files>
+      <File FileName="Program.cs" Line="54" Column="18" />
+      <File FileName="Vessel.cs" />
+      <File FileName="Ship.cs" />
+      <File FileName="Boat.cs" Line="28" Column="1" />
+      <File FileName="Cat.cs" />
+      <File FileName="README.md" Line="40" Column="71" />
+      <File FileName="IRefillable.cs" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Inheritance" expanded="True">
+            <Node name="Inheritance" expanded="True">
+              <Node name="Boat.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Inheritance PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
