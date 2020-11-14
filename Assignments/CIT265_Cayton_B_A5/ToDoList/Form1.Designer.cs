@@ -47,7 +47,7 @@
             this.quitButton.Name = "quitButton";
             this.quitButton.Size = new System.Drawing.Size(75, 23);
             this.quitButton.TabIndex = 0;
-            this.quitButton.Text = "Quit";
+            this.quitButton.Text = "&Quit";
             this.quitButton.UseVisualStyleBackColor = true;
             this.quitButton.Click += new System.EventHandler(this.quitButton_Click);
             // 
@@ -57,7 +57,7 @@
             this.addActivity.Name = "addActivity";
             this.addActivity.Size = new System.Drawing.Size(75, 23);
             this.addActivity.TabIndex = 1;
-            this.addActivity.Text = "Add";
+            this.addActivity.Text = "&Add";
             this.addActivity.UseVisualStyleBackColor = true;
             this.addActivity.Click += new System.EventHandler(this.addActivity_Click);
             // 
@@ -67,7 +67,7 @@
             this.removeActivity.Name = "removeActivity";
             this.removeActivity.Size = new System.Drawing.Size(75, 23);
             this.removeActivity.TabIndex = 2;
-            this.removeActivity.Text = "Remove";
+            this.removeActivity.Text = "&Remove";
             this.removeActivity.UseVisualStyleBackColor = true;
             this.removeActivity.Click += new System.EventHandler(this.removeActivity_Click);
             // 
@@ -77,7 +77,7 @@
             this.sortName.Name = "sortName";
             this.sortName.Size = new System.Drawing.Size(75, 23);
             this.sortName.TabIndex = 3;
-            this.sortName.Text = "Sort Name";
+            this.sortName.Text = "Sort &Name";
             this.sortName.UseVisualStyleBackColor = true;
             this.sortName.Click += new System.EventHandler(this.sortName_Click);
             // 
@@ -87,7 +87,7 @@
             this.sortDate.Name = "sortDate";
             this.sortDate.Size = new System.Drawing.Size(75, 23);
             this.sortDate.TabIndex = 4;
-            this.sortDate.Text = "Sort Date";
+            this.sortDate.Text = "Sort &Date";
             this.sortDate.UseVisualStyleBackColor = true;
             this.sortDate.Click += new System.EventHandler(this.sortDate_Click);
             // 
