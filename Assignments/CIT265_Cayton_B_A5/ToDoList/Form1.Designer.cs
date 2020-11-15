@@ -39,11 +39,13 @@
             this.nameLabel = new System.Windows.Forms.Label();
             this.dateLabel = new System.Windows.Forms.Label();
             this.activityListLabel = new System.Windows.Forms.Label();
+            this.acceptList = new System.Windows.Forms.Button();
+            this.cancelList = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // quitButton
             // 
-            this.quitButton.Location = new System.Drawing.Point(293, 326);
+            this.quitButton.Location = new System.Drawing.Point(295, 416);
             this.quitButton.Name = "quitButton";
             this.quitButton.Size = new System.Drawing.Size(75, 23);
             this.quitButton.TabIndex = 0;
@@ -103,9 +105,14 @@
             // dateTimePicker1
             // 
             this.dateTimePicker1.CalendarMonthBackground = System.Drawing.SystemColors.ButtonFace;
+            this.dateTimePicker1.CustomFormat = "ddddd, MMMM dd, yyyy hh:mm:ss tt";
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePicker1.Location = new System.Drawing.Point(133, 89);
+            this.dateTimePicker1.MaxDate = new System.DateTime(2030, 12, 31, 0, 0, 0, 0);
+            this.dateTimePicker1.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker1.ShowUpDown = true;
+            this.dateTimePicker1.Size = new System.Drawing.Size(398, 20);
             this.dateTimePicker1.TabIndex = 6;
             this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
@@ -146,11 +153,33 @@
             this.activityListLabel.TabIndex = 10;
             this.activityListLabel.Text = "Your Activity List";
             // 
+            // acceptList
+            // 
+            this.acceptList.Location = new System.Drawing.Point(157, 354);
+            this.acceptList.Name = "acceptList";
+            this.acceptList.Size = new System.Drawing.Size(75, 23);
+            this.acceptList.TabIndex = 11;
+            this.acceptList.Text = "Accept List";
+            this.acceptList.UseVisualStyleBackColor = true;
+            this.acceptList.Click += new System.EventHandler(this.acceptList_Click);
+            // 
+            // cancelList
+            // 
+            this.cancelList.Location = new System.Drawing.Point(429, 354);
+            this.cancelList.Name = "cancelList";
+            this.cancelList.Size = new System.Drawing.Size(75, 23);
+            this.cancelList.TabIndex = 12;
+            this.cancelList.Text = "Cancel List";
+            this.cancelList.UseVisualStyleBackColor = true;
+            this.cancelList.Click += new System.EventHandler(this.cancelList_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(630, 490);
+            this.ClientSize = new System.Drawing.Size(677, 487);
+            this.Controls.Add(this.cancelList);
+            this.Controls.Add(this.acceptList);
             this.Controls.Add(this.activityListLabel);
             this.Controls.Add(this.dateLabel);
             this.Controls.Add(this.nameLabel);
@@ -164,6 +193,7 @@
             this.Controls.Add(this.quitButton);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -183,6 +213,8 @@
         private System.Windows.Forms.Label nameLabel;
         private System.Windows.Forms.Label dateLabel;
         private System.Windows.Forms.Label activityListLabel;
+        private System.Windows.Forms.Button acceptList;
+        private System.Windows.Forms.Button cancelList;
     }
 }
 
