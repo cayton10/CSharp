@@ -65,6 +65,7 @@
             // 
             // removeActivity
             // 
+            this.removeActivity.Enabled = false;
             this.removeActivity.Location = new System.Drawing.Point(12, 70);
             this.removeActivity.Name = "removeActivity";
             this.removeActivity.Size = new System.Drawing.Size(75, 23);

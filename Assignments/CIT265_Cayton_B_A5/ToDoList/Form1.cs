@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -33,7 +34,6 @@ namespace ToDoList
         public List<Activity> activities = new List<Activity>();
 
 
-
         /*ADD ACTIVITY BUTTON HANDLING */
         private void addActivity_Click(object sender, EventArgs e)
         { 
@@ -45,10 +45,21 @@ namespace ToDoList
             //Clear controls once the info has been added to the list
             ClearControls();
 
+            //Set our removeActivity button control
+            removeActivity.Enabled = true;
+            removeActivity.TabStop = true;
+
+
         }
 
         private void removeActivity_Click(object sender, EventArgs e)
         {
+            //Account for people not selecting an item prior to using the button
+            if (listBox1.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select an Item first!");
+                return;
+            }
             //Store the index of the selected item
             var listIndex = listBox1.SelectedIndex;
             //Remove that item from the listbox
@@ -57,6 +68,15 @@ namespace ToDoList
             listBox1.Refresh();
             //Remove that item from the List of Activities
             activities.RemoveAt(listIndex);
+
+            //Check how many list items remain in listbox
+            var num = checkList();
+            //Use some control flow for appropriate button settings
+            if(num == 0)
+            {
+                removeActivity.Enabled = false;
+                removeActivity.TabStop = false;
+            }
         }
 
         private void sortName_Click(object sender, EventArgs e)
@@ -152,6 +172,13 @@ namespace ToDoList
             {
                 listBox1.Items.Add(item.ToString());
             }
+        }
+
+        //Disable the remove button if no items are in the todo list
+        public int checkList()
+        {
+            var num = listBox1.Items.Count;
+            return num;
         }
     }
 }
