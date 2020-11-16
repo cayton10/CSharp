@@ -13,12 +13,77 @@ namespace ToDoList
 {
     public partial class Form1 : Form
     {
+
+        //Create a new list
+        public List<Activity> activities = new List<Activity>();
+
+        //Our file writer
+        public StreamWriter fileWriter;
+
+        //Our file reader
+        public StreamReader fileReader;
+
+
         public Form1()
         {
             InitializeComponent();
+
+            //On initialization of our form, read a file if it exists
+            string fileName = "toDoList.txt";
+
+            //Try catch for opening the file
+            try
+            {
+                FileStream input = new FileStream(fileName, FileMode.Open, FileAccess.Read);
+                fileReader = new StreamReader(input);
+
+                acceptList.Enabled = false;
+
+                //Read from the file and load values as necessary
+                try
+                {
+                    string line = null;
+                    while ((line = fileReader.ReadLine()) != null)
+                    {
+ 
+                        //Declare a string array to store each piece of list info
+                        string[] strArray;
+
+                        //Split on specified delimiter
+                        strArray = line.Split('-');
+
+                        
+                        var name = strArray[0];
+                        var date = Convert.ToDateTime(strArray[1]);
+
+                        //Add information to List
+                        activities.Add(new Activity(name, date));
+
+                    }
+
+                    fileReader.Close();
+
+                    //Process List and output to listbox
+                    foreach(Activity a in activities)
+                    {
+                        listBox1.Items.Add($"{a.Name}: {a.Date}");
+                    }
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("No file to load.");
+            }
+
+            fileReader?.Close();
         }
 
-
+        
         //Methods to help our form with UX
         public void ClearControls()
         {
@@ -30,14 +95,17 @@ namespace ToDoList
             dateTimePicker1.Value = DateTime.Now;
         }
 
-        //Create a new list
-        public List<Activity> activities = new List<Activity>();
+        
 
 
         /*ADD ACTIVITY BUTTON HANDLING */
         private void addActivity_Click(object sender, EventArgs e)
-        { 
-
+        {
+            if (String.IsNullOrEmpty(nameField.Text))
+            {
+                MessageBox.Show("Please enter a name for your activity.");
+                return;
+            }
             //Add the values in the form controls to the list
             activities.Add(new Activity(nameField.Text, dateTimePicker1.Value));
             //Add the activity to the List box for user to view
@@ -49,6 +117,8 @@ namespace ToDoList
             removeActivity.Enabled = true;
             removeActivity.TabStop = true;
 
+            acceptList.Enabled = true;
+            acceptList.TabStop = true;
 
         }
 
@@ -77,6 +147,9 @@ namespace ToDoList
                 removeActivity.Enabled = false;
                 removeActivity.TabStop = false;
             }
+
+            acceptList.Enabled = true;
+            acceptList.TabStop = true;
         }
 
         private void sortName_Click(object sender, EventArgs e)
@@ -143,7 +216,19 @@ namespace ToDoList
 
         private void quitButton_Click(object sender, EventArgs e)
         {
-            this.Close();
+            //Used the try catch exception handling from our Bank Accounts example. 
+            //Thanks!
+            try
+            {
+                fileWriter?.Close();
+            }
+            catch (IOException)
+            {
+
+                MessageBox.Show("Can't close file.", "Error: ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            Application.Exit();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -153,11 +238,32 @@ namespace ToDoList
 
         private void acceptList_Click(object sender, EventArgs e)
         {
-            //If we accept the list, then add all list items to List Structure to save to file
-            foreach(String str in listBox1.Items)
+
+            string fileName = "toDoList.txt";
+
+            
+
+            //Save our list to a file in our project directory for convenience
+            try
             {
-                MessageBox.Show($"Data type of listbox index items: {str.GetType()}");
+                var output = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.Write);
+                fileWriter = new StreamWriter(output);
+
+                acceptList.Enabled = false;
+
+                //Write our activity list to the toDoList.txt file
+                foreach (Activity act in activities)
+                {
+                    fileWriter.WriteLine(act.ToString());
+                }
             }
+            catch (IOException)
+            {
+
+                throw;
+            }
+
+
         }
 
         private void cancelList_Click(object sender, EventArgs e)

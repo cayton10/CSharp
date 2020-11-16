@@ -36,7 +36,7 @@ namespace ToDoList
         //ToString override
         public override string ToString()
         {
-            return $"{name}: {date}";
+            return $"{name}-{date}";
         }
 
         
