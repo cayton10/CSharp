@@ -16,6 +16,8 @@ namespace ToDoList
 
         //Create a new list
         public List<Activity> activities = new List<Activity>();
+        //If we get this far, make a new List to store what the file contained
+        public List<Activity> fromFile = new List<Activity>();
 
         //Our file writer
         public StreamWriter fileWriter;
@@ -38,6 +40,7 @@ namespace ToDoList
                 fileReader = new StreamReader(input);
 
                 acceptList.Enabled = false;
+               
 
                 //Read from the file and load values as necessary
                 try
@@ -58,6 +61,13 @@ namespace ToDoList
 
                         //Add information to List
                         activities.Add(new Activity(name, date));
+
+                        //Make a copy for the cancel button
+                        fromFile.Add(new Activity(name, date));
+
+                        //Enable the removeActivity button
+                        removeActivity.Enabled = true;
+                        removeActivity.TabStop = true;
 
                     }
 
@@ -199,21 +209,7 @@ namespace ToDoList
 
         }
 
-        private void nameField_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
-        {
-            DateTime Date = dateTimePicker1.Value;
-        }
-
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
+   
         private void quitButton_Click(object sender, EventArgs e)
         {
             //Used the try catch exception handling from our Bank Accounts example. 
@@ -231,10 +227,7 @@ namespace ToDoList
             Application.Exit();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
+        
 
         private void acceptList_Click(object sender, EventArgs e)
         {
@@ -246,8 +239,9 @@ namespace ToDoList
             //Save our list to a file in our project directory for convenience
             try
             {
-                var output = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.Write);
-                fileWriter = new StreamWriter(output);
+
+                fileWriter = new StreamWriter(fileName, false);
+
 
                 acceptList.Enabled = false;
 
@@ -268,6 +262,17 @@ namespace ToDoList
 
         private void cancelList_Click(object sender, EventArgs e)
         {
+            //Clear everything from the listbox
+            listBox1.Items.Clear();
+            listBox1.Refresh();
+
+            //Reassign the values held in the fromFile List copy to activities List
+            activities = fromFile;
+
+            foreach(Activity act in activities)
+            {
+                listBox1.Items.Add($"{act.Name}: {act.Date}");
+            }
 
         }
 
@@ -276,7 +281,7 @@ namespace ToDoList
         {
             foreach (Activity item in list)
             {
-                listBox1.Items.Add(item.ToString());
+                listBox1.Items.Add($"{item.Name}: {item.Date}");
             }
         }
 
@@ -285,6 +290,26 @@ namespace ToDoList
         {
             var num = listBox1.Items.Count;
             return num;
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            DateTime Date = dateTimePicker1.Value;
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void nameField_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
