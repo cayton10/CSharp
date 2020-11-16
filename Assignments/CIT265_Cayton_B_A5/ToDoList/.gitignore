@@ -1,0 +1,10 @@
+#ignore files:
+
+.DS_Store
+#ignore C# project binaries
+bin/
+#ignore C# object code
+obj/
+
+**/bin/Debug/
+**/bin/Release/
