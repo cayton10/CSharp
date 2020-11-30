@@ -34,10 +34,11 @@
             // 
             // treeView1
             // 
-            this.treeView1.Location = new System.Drawing.Point(256, 69);
+            this.treeView1.Location = new System.Drawing.Point(260, 80);
             this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(246, 298);
-            this.treeView1.TabIndex = 0;
+            this.treeView1.Size = new System.Drawing.Size(238, 255);
+            this.treeView1.TabIndex = 2;
+            this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
             // 
             // browseDirectory
             // 
