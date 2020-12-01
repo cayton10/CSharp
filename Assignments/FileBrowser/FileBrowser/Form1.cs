@@ -21,20 +21,24 @@ namespace FileBrowser
         string substringDirectory;
         string substringFile;
         int rootIterator = 0;
-        int subIterator = 0;
 
-        //RootNode
-        string rootNode;
-        string childNode;
+        //Global count variables
+        int numOfSubDirs = 0;
+        int numOfSubFiles = 0;
+        int numOfFiles = 0;
+        int numOfDirs = 0;
+        int displayDir = 0;
+        int displayFile = 0;
+        int displaySubDir = 0;
+        int displaySubFile = 0;
 
-        TreeNode parent;
 
         private void browseDirectory_Click(object sender, EventArgs e)
         {
             
             
             FolderBrowserDialog browser = new FolderBrowserDialog();
-            OpenFileDialog openFile = new OpenFileDialog();
+            
             TreeNode parent;
             
             if (browser.ShowDialog() == System.Windows.Forms.DialogResult.OK)
@@ -42,20 +46,62 @@ namespace FileBrowser
                 //Clear the tree view if a new directory has been selected
                 treeView1.Nodes.Clear();
                 string path = browser.SelectedPath;
+                //Clear text boxes for counting information
+                fileBox.Clear();
+                directoryBox.Clear();
 
                 
 
                     if (File.Exists(path))
                     {
-                        // This path is a file
-                        ProcessFile(path);
+                        //Count the number of files from selected directory
+                        //Process to filter hidden files
+                        List<string> fileInfo = OmitHiddenFile(path);
+                        //Count number of files in root directory
+                        numOfFiles = fileInfo.Count();
+
+                        //Pass value and reset
+                        displayFile = numOfFiles;
+                        numOfFiles = 0;
+                        
+
+                        //Output file nodes
+                        foreach (string fileName in fileInfo)
+                        {
+                            substringFile = Path.GetFileName(fileName);
+                            TreeNode rootNode = new TreeNode(substringFile);
+                            treeView1.Nodes.Add(rootNode);
+                        }
+                        
+
                     }
                     else if (Directory.Exists(path))
                     {
+                        //Process the files first
+                        List<string> fileInfo = OmitHiddenFile(path);
+                        numOfFiles = fileInfo.Count();
+
+                        //Pass value and reset
+                        displayFile = numOfFiles;
+                        numOfFiles = 0;
+
+                        foreach (string fileName in fileInfo)
+                        {
+                            substringFile = Path.GetFileName(fileName);
+
+                            TreeNode rootNode = new TreeNode(substringFile);
+                            treeView1.Nodes.Add(rootNode);
+                        }
 
                         List<string> dirInfo = OmitHiddenDirectory(path);
+
                         //Count the number of directories at root
-                        int numberInRoot = dirInfo.Count() - 1;
+                        numOfDirs = dirInfo.Count();
+
+                        //Pass value and reset
+                        displayDir = numOfDirs;
+                        numOfDirs = 0;
+
 
                         foreach(string name in dirInfo)
                         {
@@ -72,10 +118,28 @@ namespace FileBrowser
                             ProcessDirectory(name, parent);
                             //Set iterator for root directory nodes
                             ++rootIterator;
+
+                            //Pass our values to printing variables
                         }
 
-                        
-                    }
+                    //Output root directory counts for files and folder
+                    fileBox.AppendText(displayFile.ToString());
+                    directoryBox.AppendText(displayDir.ToString());
+
+                    //Pass values for subdir information and reset for next browse
+                    displaySubDir = numOfSubDirs;
+                    numOfSubDirs = 0;
+
+                    displaySubFile = numOfSubFiles;
+                    numOfSubFiles = 0;
+
+                    //Reset all our information for next browse
+                    rootIterator = 0;
+
+
+                    
+
+                }
                     else
                     {
                         Console.WriteLine("{0} is not a valid file or directory.", path);
@@ -100,6 +164,9 @@ namespace FileBrowser
 
                 List<string> fileEntries = OmitHiddenFile(targetDirectory);
 
+                //Count all files returned from hidden attribute filtering
+                numOfSubFiles += fileEntries.Count();
+
                 //string[] fileEntries = Directory.GetFiles(targetDirectory);
                 foreach (string fileName in fileEntries)
                 {
@@ -115,6 +182,7 @@ namespace FileBrowser
             }
             catch (System.UnauthorizedAccessException)
             {
+                parent.Nodes.Add("No Access");
 
             }
 
@@ -125,7 +193,8 @@ namespace FileBrowser
 
                 List<string> subdirectoryEntries = OmitHiddenDirectory(targetDirectory);
 
-                int numOfSubDirs = subdirectoryEntries.Count();
+                //Count all directories returned from hidden attribute filtering
+                numOfSubDirs += subdirectoryEntries.Count();
 
                 
 
@@ -138,25 +207,26 @@ namespace FileBrowser
                     parent.Nodes.Add(myNode);
 
                     TreeNode subDirNode = parent.LastNode;
-
-                    if (subIterator == numOfSubDirs)
-                        parent = parent.LastNode;
                     
-                    Console.WriteLine(parent); 
                     ProcessDirectory(subdirectory, subDirNode);
-                    ++subIterator;
                 }
             }
             catch (System.UnauthorizedAccessException)
             {
-                
+                parent.Nodes.Add("No Access"); 
             }
         }
 
         // Insert logic for processing found files here.
         public void ProcessFile(string path)
         {
-            Console.WriteLine("Processed file '{0}'.", Path.GetFileName(path));
+            List<string> files = OmitHiddenDirectory(path);
+
+            foreach(string fileName in files)
+            {
+                treeView1.Nodes.Add(fileName);
+            }
+            
         }
 
         //Used for omitting hidden directories from tree view controller
@@ -190,6 +260,7 @@ namespace FileBrowser
             DirectoryInfo directory = new DirectoryInfo(path);
             FileInfo[] files = directory.GetFiles();
 
+
             //Create dynamic collection to store the valid directories
             List<string> dirInfo = new List<string>();
 
@@ -206,6 +277,42 @@ namespace FileBrowser
 
             return dirInfo;
         }
-        
+
+        private void countSubCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            //Checkbox state logic
+            if(countSubCheckBox.Checked)
+            {
+                //Empty the text boxes containing count information
+                fileBox.Text = String.Empty;
+                directoryBox.Text = String.Empty;
+
+                //Display counts of all files / directories from root
+                directoryBox.AppendText(displaySubDir.ToString());
+                fileBox.AppendText(displaySubFile.ToString());
+            }
+            else
+            {
+                fileBox.Clear();
+                directoryBox.Clear();
+
+                directoryBox.AppendText(displayDir.ToString());
+                fileBox.AppendText(displayFile.ToString());
+            }
+            
+
+        }
+
+        private void fileBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void directoryBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+
     }
 }
