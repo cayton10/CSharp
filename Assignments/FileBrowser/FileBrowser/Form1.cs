@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace FileBrowser
 {
@@ -33,7 +34,7 @@ namespace FileBrowser
         int displaySubFile = 0;
 
 
-        private void browseDirectory_Click(object sender, EventArgs e)
+        private async void browseDirectory_Click(object sender, EventArgs e)
         {
             
             
@@ -50,77 +51,77 @@ namespace FileBrowser
                 fileBox.Clear();
                 directoryBox.Clear();
 
-                
 
-                    if (File.Exists(path))
+
+                if (File.Exists(path))//If no subdirectories within selected directory,
+                {
+                    //Count the number of files from selected directory
+                    //Process to filter hidden files
+                    List<string> fileInfo = await OmitHiddenFile(path);
+                    //Count number of files in root directory
+                    numOfFiles = fileInfo.Count();
+
+                    //Pass value and reset
+                    displayFile = numOfFiles;
+                    numOfFiles = 0;
+
+
+                    //Output file nodes
+                    foreach (string fileName in fileInfo)
                     {
-                        //Count the number of files from selected directory
-                        //Process to filter hidden files
-                        List<string> fileInfo = OmitHiddenFile(path);
-                        //Count number of files in root directory
-                        numOfFiles = fileInfo.Count();
+                        substringFile = Path.GetFileName(fileName);
+                        TreeNode rootNode = new TreeNode(substringFile);
+                        treeView1.Nodes.Add(rootNode);
+                    }
 
-                        //Pass value and reset
-                        displayFile = numOfFiles;
-                        numOfFiles = 0;
-                        
 
-                        //Output file nodes
-                        foreach (string fileName in fileInfo)
-                        {
-                            substringFile = Path.GetFileName(fileName);
-                            TreeNode rootNode = new TreeNode(substringFile);
-                            treeView1.Nodes.Add(rootNode);
-                        }
-                        
+                }
+                else if (Directory.Exists(path)) //If 
+                {
+
+                    List<string> dirInfo = await OmitHiddenDirectory(path);
+
+                    //Count the number of directories at root
+                    numOfDirs = dirInfo.Count();
+
+                    //Pass value and reset
+                    displayDir = numOfDirs;
+                    numOfDirs = 0;
+
+
+                    foreach (string name in dirInfo)
+                    {
+                        substringDirectory = Path.GetFileName(name);
+
+                        TreeNode rootNode = new TreeNode(substringDirectory);
+
+                        treeView1.Nodes.Add(rootNode);
+
+                        parent = treeView1.Nodes[rootIterator];
+
+                        // This path is a directory
+                        await ProcessDirectory(name, parent);
+
+                        //Set iterator for root directory nodes
+                        ++rootIterator;
 
                     }
-                    else if (Directory.Exists(path))
+
+                    //Process the files Last
+                    List<string> fileInfo = await OmitHiddenFile(path);
+                    numOfFiles = fileInfo.Count();
+
+                    //Pass value and reset
+                    displayFile = numOfFiles;
+                    numOfFiles = 0;
+
+                    foreach (string fileName in fileInfo)
                     {
-                        //Process the files first
-                        List<string> fileInfo = OmitHiddenFile(path);
-                        numOfFiles = fileInfo.Count();
+                        substringFile = Path.GetFileName(fileName);
 
-                        //Pass value and reset
-                        displayFile = numOfFiles;
-                        numOfFiles = 0;
-
-                        foreach (string fileName in fileInfo)
-                        {
-                            substringFile = Path.GetFileName(fileName);
-
-                            TreeNode rootNode = new TreeNode(substringFile);
-                            treeView1.Nodes.Add(rootNode);
-                        }
-
-                        List<string> dirInfo = OmitHiddenDirectory(path);
-
-                        //Count the number of directories at root
-                        numOfDirs = dirInfo.Count();
-
-                        //Pass value and reset
-                        displayDir = numOfDirs;
-                        numOfDirs = 0;
-
-
-                        foreach(string name in dirInfo)
-                        {
-                            substringDirectory = Path.GetFileName(name);
-
-                            TreeNode rootNode = new TreeNode(substringDirectory);
-                            Console.WriteLine(rootNode);
-                            Console.WriteLine(rootNode.GetType());
-                            treeView1.Nodes.Add(rootNode);
-
-                            parent = treeView1.Nodes[rootIterator];
-                            
-                            // This path is a directory
-                            ProcessDirectory(name, parent);
-                            //Set iterator for root directory nodes
-                            ++rootIterator;
-
-                            //Pass our values to printing variables
-                        }
+                        TreeNode rootNode = new TreeNode(substringFile);
+                        treeView1.Nodes.Add(rootNode);
+                    }
 
                     //Output root directory counts for files and folder
                     fileBox.AppendText(displayFile.ToString());
@@ -136,14 +137,11 @@ namespace FileBrowser
                     //Reset all our information for next browse
                     rootIterator = 0;
 
-
-                    
-
                 }
-                    else
-                    {
-                        Console.WriteLine("{0} is not a valid file or directory.", path);
-                    }
+                else
+                {
+                    Console.WriteLine("{0} is not a valid file or directory.", path);
+                }
 
             }
         }
@@ -155,14 +153,14 @@ namespace FileBrowser
 
         // Process all files in the directory passed in, recurse on any directories
         // that are found, and process the files they contain.
-        public void ProcessDirectory(string targetDirectory, TreeNode parent)
+        public async Task ProcessDirectory(string targetDirectory, TreeNode parent)
         {
            
             // Process the list of files found in the directory.
             try
             {
 
-                List<string> fileEntries = OmitHiddenFile(targetDirectory);
+                List<string> fileEntries = await OmitHiddenFile(targetDirectory);
 
                 //Count all files returned from hidden attribute filtering
                 numOfSubFiles += fileEntries.Count();
@@ -191,12 +189,12 @@ namespace FileBrowser
             try
             {
 
-                List<string> subdirectoryEntries = OmitHiddenDirectory(targetDirectory);
+                List<string> subdirectoryEntries = await OmitHiddenDirectory(targetDirectory);
 
                 //Count all directories returned from hidden attribute filtering
                 numOfSubDirs += subdirectoryEntries.Count();
 
-                
+                int i = 0;
 
                 foreach (string subdirectory in subdirectoryEntries)
                 {
@@ -208,7 +206,9 @@ namespace FileBrowser
 
                     TreeNode subDirNode = parent.LastNode;
                     
-                    ProcessDirectory(subdirectory, subDirNode);
+                    await ProcessDirectory(subdirectory, subDirNode);
+
+                    ++i;
                 }
             }
             catch (System.UnauthorizedAccessException)
@@ -218,9 +218,9 @@ namespace FileBrowser
         }
 
         // Insert logic for processing found files here.
-        public void ProcessFile(string path)
+        public async void ProcessFile(string path)
         {
-            List<string> files = OmitHiddenDirectory(path);
+            List<string> files = await OmitHiddenFile(path);
 
             foreach(string fileName in files)
             {
@@ -230,53 +230,74 @@ namespace FileBrowser
         }
 
         //Used for omitting hidden directories from tree view controller
-        public List<string> OmitHiddenDirectory(string path)
+        public async Task<List<string>> OmitHiddenDirectory(string path)
         {
-            //Instantiate these class objects to check for hidden directories
-            DirectoryInfo directory = new DirectoryInfo(path);
-            DirectoryInfo[] files = directory.GetDirectories();
-
-            //Create dynamic collection to store the valid directories
-            List<string> dirInfo = new List<string>();
-
-            //Use Lambda to filter out hidden directories
-            var filtered = files.Where(f => !f.Attributes.HasFlag(FileAttributes.Hidden));
-
-            //Process them and store
-            foreach (var f in filtered)
+            try
             {
-                var dirName = f.ToString();
-                dirInfo.Add($"{path}\\{dirName}");
-                // This path is a directory
-            }
+                //Instantiate these class objects to check for hidden directories
+                DirectoryInfo directory = new DirectoryInfo(path);
+                DirectoryInfo[] files = await Task.Run(() => directory.GetDirectories());
 
-            return dirInfo;
+                //Create dynamic collection to store the valid directories
+                List<string> dirInfo = new List<string>();
+
+                //Use Lambda to filter out hidden directories
+                var filtered = files.Where(f => !f.Attributes.HasFlag(FileAttributes.Hidden));
+
+                //Process them and store
+                foreach (var f in filtered)
+                {
+                    var dirName = f.ToString();
+                    dirInfo.Add($"{path}\\{dirName}");
+                    // This path is a directory
+                }
+
+                return dirInfo;
+
+            }
+            catch (System.UnauthorizedAccessException)
+            {
+
+                throw;
+            }
+            
         }
 
         //Used for omitting hidden files from tree view controller
-        public List<string> OmitHiddenFile(string path)
+        public async Task<List<string>> OmitHiddenFile(string path)
         {
-            //Instantiate these class objects to check for hidden directories
-            DirectoryInfo directory = new DirectoryInfo(path);
-            FileInfo[] files = directory.GetFiles();
-
-
-            //Create dynamic collection to store the valid directories
-            List<string> dirInfo = new List<string>();
-
-            //Use Lambda to filter out hidden directories
-            var filtered = files.Where(f => !f.Attributes.HasFlag(FileAttributes.Hidden));
-
-            //Process them and store
-            foreach (var f in filtered)
+            try
             {
-                var dirName = f.ToString();
-                dirInfo.Add($"{path}\\{dirName}");
-                // This path is a directory
-            }
+                //Instantiate these class objects to check for hidden directories
+                DirectoryInfo directory = new DirectoryInfo(path);
 
-            return dirInfo;
+                FileInfo[] files = await Task.Run(() => directory.GetFiles());
+
+
+                //Create dynamic collection to store the valid directories
+                List<string> dirInfo = new List<string>();
+
+                //Use Lambda to filter out hidden directories
+                var filtered = files.Where(f => !f.Attributes.HasFlag(FileAttributes.Hidden));
+
+                //Process them and store
+                foreach (var f in filtered)
+                {
+                    var dirName = f.ToString();
+                    dirInfo.Add($"{path}\\{dirName}");
+                    // This path is a directory
+                }
+
+                return dirInfo;
+
+            }
+            catch (System.UnauthorizedAccessException)
+            {
+                throw;
+            }
+            
         }
+
 
         private void countSubCheckBox_CheckedChanged(object sender, EventArgs e)
         {
