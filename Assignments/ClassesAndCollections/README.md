@@ -1,4 +1,12 @@
-﻿# Assignment 4 – Classes and Collections
+﻿# Classes & Collections
+
+This was really just an exercise in reiterating the nauances of writing classes in the C# .NET environment. It was also a useful experience in learning how to implement List objects using this stack. I had previously only used lists in C++, but they are similiar enough.  
+
+The hardest part of the project was implementing LINQ for the leaderboard. I did not implement the extra credit functionality in part 7. I may go back and do that when I've got some free time.
+
+The project requirements are listed below:
+
+## Assignment 4 – Classes and Collections
 
 1. 	Create a class Player that can keep track of a player’s name, wins, and losses. Use private variables and public properties. (Ch. 4, starting page 73)	15%
 		
